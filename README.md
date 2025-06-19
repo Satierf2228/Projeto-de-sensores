@@ -29,6 +29,9 @@ Separar os dados em arquivos distintos para cada sensor.
 
 Em cada arquivo, ordenar as leituras por timestamp (data e hora representada em unix epoch) em ordem decrescente.
 
+Como compilar: gcc -o Leitura3_0 Leitura3_0.c
+Executar: ./Leitura3_0 leituras.txt
+
 Programa 2 - Consulta3
 
 O segundo programa deve pesquisar a medida de um sensor especifico mais próxima de uma data e hora informada.
@@ -44,6 +47,9 @@ O programa deve então localizar, usando busca binária, a leitura registrada co
 OBS:
 A busca binária é obrigatória para garantir desempenho adequado em grandes volumes de dados.
 E buscar arquivo ordenado em ordem decrescente.
+
+Como compilar:gcc -o Consulta3.c Consulta3.c
+Como executar ex: .\Consulta3.exe
 
 Programa 3 - Gerador3
 
@@ -72,3 +78,6 @@ O arquivo gerado deve seguir o formato: <TIMESTAMP> <ID_SENSOR> <VALOR>
 <TIMESTAMP> data e hora da medida no formato unix epoch.
 <ID_SENSOR> string sem espaço que representa cada sensor
 <VALOR> Valor aleatório da amostra de acordo com o tipo indicado para o sensor.
+
+Como compilar: gcc Gerador3.c -o Gerador3.exe
+Executar na pasta (Gerador3.exe): ./Gerador3.exe "2025-06-01 00:00:00" "2025-06-02 23:59:59" TEMP,PRES,VIBR CONJ_Z,CONJ_Q,BINARIO
