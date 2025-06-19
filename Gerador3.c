@@ -3,25 +3,20 @@
 #include <string.h>
 #include <time.h>
 
-time_t converter_para_timestap(int dia, int mes, int ano, int hora, int min, int seg) 
-{
-    struct tm t;
-
-    t.tm_year = ano - 1900;
-    t.tm_mon = mes - 1;
-    t.tm_mday = dia;
-    t.tm_hour = hora;
-    t.tm_min = min;
-    t.tm_sec = seg;
-    t.tm_isdst = -1;
-
-    time_t timestamp = mktime(&t);
-    if (timestamp == -1) {
-        printf("Data inválida. Tente novamente.\n");
-    } else {
-        return timestamp;
+time_t converter_para_timestamp(const char *data_hora) {
+    struct tm t = {0};
+    if (sscanf(data_hora, "%d-%d-%d %d:%d:%d",
+               &t.tm_year, &t.tm_mon, &t.tm_mday,
+               &t.tm_hour, &t.tm_min, &t.tm_sec) != 6) {
+        printf("Formato de data inválido. Use: YYYY-MM-DD HH:MM:SS\n");
+        return -1;
     }
+    t.tm_year -= 1900; // ano desde 1900
+    t.tm_mon -= 1;     // mês 0-11
+    t.tm_isdst = -1;   // desativa horário de verão automático
+    return mktime(&t);
 }
+
 
 time_t gerar_timestamp_aleatorio(time_t inicio, time_t fim) {
     if (fim <= inicio) return inicio;

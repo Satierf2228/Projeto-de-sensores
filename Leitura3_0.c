@@ -17,10 +17,10 @@ typedef struct{
     int count;
 }sensor_data;
 
-int comparar_timestamp(const void *a, const void *b){
+int comparar_timestamp_decres(const void *a, const void *b){
     Registro *ra = (Registro *)a;
     Registro *rb = (Registro *)b;
-    return(ra->timestamp > rb->timestamp) - (ra->timestamp < rb->timestamp);
+    return (rb->timestamp - ra->timestamp);
 }
 
 void guardar_arquivos(const char *nome_arquivo, Registro *dados, int count){
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]){
     
     for (int i = 0; i < num_sensores; i++)
     {
-        qsort(sensores[i].dados, sensores[i].count, sizeof(Registro),comparar_timestamp);
+        qsort(sensores[i].dados, sensores[i].count, sizeof(Registro),comparar_timestamp_decres);
         char nome_arquivo[30];
         snprintf(nome_arquivo, sizeof(nome_arquivo), "%s.txt", sensores[i].nome);
 
