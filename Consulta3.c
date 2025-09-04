@@ -16,7 +16,7 @@ int busca_binaria_decres(Registro *dados, int a, long resultado){
     int inicio = 0;
     int fim = a - 1;
     int meio;
-    long menor_difer = 999999999;
+    long menor_difer = 0;
     int melhor_indice = -1;
 
 
